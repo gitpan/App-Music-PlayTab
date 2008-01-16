@@ -1,0 +1,25 @@
+0.06
+
+	Add '!n <n>' for bar numbering. N > 0 enables, n = 0 disables,
+	n < 0 skips bars before starting to number. Default is no
+	numbering, '!n' is equivalent to '!n 1'.
+
+	Add '!lilypond <n>' to interpret chords in LilyPond format.
+	With <n> = 0, uses the traditional format.
+
+	Rewrote the parsers into modules.
+	Rewrote the main into a module as well.
+
+0.05
+
+	Use sharps when transposing up, flats when transposing down.
+
+	Better layout for power chords.
+
+0.04
+
+	Add --transpose (global) option.
+
+	Merge all examples into a single zzexamples directory.
+
+	Fix some typo's.
