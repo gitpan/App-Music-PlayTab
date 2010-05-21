@@ -1,3 +1,12 @@
+2.019
+	Add posttext.
+
+	Better test testing for Windows.
+
+	Recognize LilypOnd power chords.
+
+2.018
+
 0.06
 
 	Add '!n <n>' for bar numbering. N > 0 enables, n = 0 disables,

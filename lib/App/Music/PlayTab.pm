@@ -1,13 +1,13 @@
 #!/usr/bin/perl
-my $RCS_Id = '$Id: PlayTab.pm,v 2.18 2008/01/17 10:04:06 jv Exp $ ';
+my $RCS_Id = '$Id: PlayTab.pm,v 2.20 2010/05/21 14:41:00 jv Exp $ ';
 
 package App::Music::PlayTab;
 
 # Author          : Johan Vromans
 # Created On      : Tue Sep 15 15:59:04 1992
 # Last Modified By: Johan Vromans
-# Last Modified On: Thu Jan 17 11:03:26 2008
-# Update Count    : 356
+# Last Modified On: Mon Oct  6 10:35:01 2008
+# Update Count    : 367
 # Status          : Unknown, Use with caution!
 
 ################ Common stuff ################
@@ -15,7 +15,7 @@ package App::Music::PlayTab;
 use strict;
 use warnings;
 
-our $VERSION = sprintf "%d.%03d", q$Revision: 2.18 $ =~ /(\d+)/g;
+our $VERSION = sprintf "%d.%03d", q$Revision: 2.20 $ =~ /(\d+)/g;
 
 # Package or program libraries, if appropriate.
 # $LIBDIR = $ENV{'LIBDIR'} || '/usr/local/lib/sample';
@@ -62,6 +62,7 @@ my @Rom = qw(I II III IV V VI VII VIII IX X XI XII);
 
 my $line;			# current line (for messages)
 my $linetype = 0;		# type of current line
+my $posttext;
 
 my $xpose = $gxpose;
 
@@ -230,6 +231,12 @@ sub bar {
 	die($@) if $@ =~ /can\'t locate/i;
 	errout($@) if $@;
     }
+    if ( defined $posttext ) {
+	ps_skip(4);
+	ps_move();
+	print OUTPUT ('SF (', $posttext, ') show', "\n");
+	undef $posttext;
+    }
     print_newline();
 }
 
@@ -283,6 +290,13 @@ sub control {
 	$lilypond = defined $1 ? $1 : 1;
 	return;
     }
+
+    if ( /^\>\s+(.+)/i ) {
+	$posttext = $1;
+	return;
+    }
+
+
     errout("Unrecognized control");
 }
 
@@ -715,7 +729,24 @@ playtab [options] [file ...]
 
  perl -MApp::Music::PlayTab -e run ...arguments...
 
-=head1 OPTIONS
+=head1 DESCRIPTION
+
+This utility program is intended for musicians. It produces tabular
+chord diagrams that are very handy for playing rhythm guitar or bass
+in jazz, blues, and popular music.
+
+I wrote it since in official (and unofficial) sheet music, I find it
+often hard to stick to the structure of the piece. Also, as a guitar
+player, I do not need all the detailed notes and such that are only
+important for melody instruments. And I cannot turn over the pages
+while playing.
+
+For more info and examples,
+see http://johan.vromans.org/software/sw_playtab.html .
+
+B<playtab> is just a trivial wrapper around the App::Music::PlayTab module.
+
+=head1 COMMAND LINE OPTIONS
 
 =over 8
 
@@ -754,7 +785,7 @@ Input file(s).
 
 =back
 
-=head1 DESCRIPTION
+=head1 INPUT SYNTAX
 
 The input for playtab is plain ASCII. It contains the chords, the
 division in bars, with optional annotations.
@@ -908,15 +939,20 @@ Have fun, and let me know your ideas!
 
 See also: http://lilypond.org/doc/stable/Documentation/user/lilypond/Chord-names
 
+=head1 SEE ALSO
+
+http://chordie.sourceforge.net/
+
 =head1 AUTHOR
 
 Johan Vromans, Squirrel Consultancy E<lt>jvromans@squirrel.nlE<gt>
 
 =head1 COPYRIGHT AND DISCLAIMER
 
-This program is Copyright 1990,2007 by Johan Vromans.
-This program is free software; you can redistribute it and/or
-modify it under the same terms as Perl.
+This program is Copyright 1990,2008 by Johan Vromans.
+
+This program is free software; you may redistribute it and/or modify
+it under the same terms as Perl itself.
 
 =cut
 

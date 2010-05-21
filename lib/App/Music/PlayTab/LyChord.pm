@@ -5,7 +5,7 @@ package App::Music::PlayTab::LyChord;
 use strict;
 use warnings;
 
-our $VERSION = sprintf "%d.%03d", q$Revision: 1.4 $ =~ /(\d+)/g;
+our $VERSION = sprintf "%d.%03d", q$Revision: 1.5 $ =~ /(\d+)/g;
 
 use App::Music::PlayTab::Note;
 use Carp;
@@ -19,6 +19,7 @@ sub parse {
     $self->{_unparsed} = $chord;
     $self->{_debug} = 1 if $chord =~ s/^\?//;
     $self->{_isrest} = 0;
+    delete( $self->{bass} );
 
     my $key = $chord;
     my $mod = '';
@@ -34,6 +35,9 @@ sub parse {
 	}
 	return $self;
     }
+
+    # Treat power chords as modifications.
+    $chord =~ s;^([[a-g](?:es|is)?(\d+\.*)?)/;$1:/;;
 
     # Separate the chord key from the modifications.
     if ( $chord =~ /(^[a-g](?:es|is)?)(\d+\.*)?(?::(.*))?/ ) {
