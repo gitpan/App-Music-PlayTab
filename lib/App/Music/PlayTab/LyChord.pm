@@ -1,11 +1,18 @@
 #! perl
 
+# Author          : Johan Vromans
+# Created On      : Tue Jan 15 15:59:16 2008
+# Last Modified By: Johan Vromans
+# Last Modified On: Tue Apr 19 16:27:42 2011
+# Update Count    : 8
+# Status          : Unknown, Use with caution!
+
 package App::Music::PlayTab::LyChord;
 
 use strict;
 use warnings;
 
-our $VERSION = sprintf "%d.%03d", q$Revision: 1.5 $ =~ /(\d+)/g;
+our $VERSION = "1.006";
 
 use App::Music::PlayTab::Note;
 use Carp;
@@ -76,6 +83,14 @@ sub parse {
 	    $mod = $+;
 	    vec($chflags,7,1) = 1;
 	    $chmods[7] = 1;
+	    next;
+	}
+	if ( $mod =~ /^m(?:in)?7(?:\.?(.*))?/ ) {	# Minor triad 7
+	    $mod = $+;
+	    vec($chflags,7,1) = 1;
+	    $chmods[7] = 0;
+	    vec($chflags,3,1) = 1;
+	    $chmods[3] = -1;
 	    next;
 	}
 	if ( $mod =~ /^m(?:\.?(.*))?/ ) {	# Minor triad

@@ -1,12 +1,18 @@
-2.019
+2.021	Apr 19 2011
+
+	Add minor7 chords.
+	Migrate CVS to git.
+
+2.020	May 21 2010
+2.019	May 21 2010
+
 	Add posttext.
 
 	Better test testing for Windows.
 
-	Recognize LilypOnd power chords.
+	Recognize LilyPond power chords.
 
-2.018
-
+2.018	Jan 17 2008
 0.06
 
 	Add '!n <n>' for bar numbering. N > 0 enables, n = 0 disables,
@@ -19,13 +25,13 @@
 	Rewrote the parsers into modules.
 	Rewrote the main into a module as well.
 
-0.05
+0.05	Apr 16 2007
 
 	Use sharps when transposing up, flats when transposing down.
 
 	Better layout for power chords.
 
-0.04
+0.04	Feb 20 2007
 
 	Add --transpose (global) option.
 
