@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               App-Music-PlayTab
-version:            2.021
+version:            2.023
 abstract:           Print play tabs of songs
 author:
     - Johan Vromans (jvromans@squirrel.nl)
