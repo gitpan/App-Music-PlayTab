@@ -1,21 +1,21 @@
---- #YAML:1.0
-name:               App-Music-PlayTab
-version:            2.023
-abstract:           Print play tabs of songs
+---
+abstract: 'Print play tabs of songs'
 author:
-    - Johan Vromans (jvromans@squirrel.nl)
-license:            unknown
-distribution_type:  module
-configure_requires:
-    ExtUtils::MakeMaker:  0
+  - 'Johan Vromans (jvromans@squirrel.nl)'
 build_requires:
-    ExtUtils::MakeMaker:  0
-requires:  {}
-no_index:
-    directory:
-        - t
-        - inc
-generated_by:       ExtUtils::MakeMaker version 6.56
+  ExtUtils::MakeMaker: 0
+configure_requires:
+  ExtUtils::MakeMaker: 0
+dynamic_config: 1
+generated_by: 'ExtUtils::MakeMaker version 6.62, CPAN::Meta::Converter version 2.120921'
+license: unknown
 meta-spec:
-    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
-    version:  1.4
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: App-Music-PlayTab
+no_index:
+  directory:
+    - t
+    - inc
+requires: {}
+version: 2.024
